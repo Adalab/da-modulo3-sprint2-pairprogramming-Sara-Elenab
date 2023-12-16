@@ -1,9 +1,19 @@
-#%%
 import pandas as pd
 import numpy as np
 pd.set_option('display.max_columns', None)
-#%%
+
 def leer_csv(archivo,num_col=0):
+    """
+    Función para convertir un archivo csv en un dataframe
+    
+    Args:
+        archivo (str): Archivo csv separado por comas
+        num_col (int): número de columnas que quieres que tenga el dataframe resultante (por defecto, 0 en cuyo caso no se tendrá en cuenta para crear el dataframe)
+
+    Returns:
+        df (DataFrame): Devuelve un dataframe directamente del archivo csv
+    """
+
     if num_col == 0:
         dataframe = pd.read_csv(archivo,index_col=0)
     else:
@@ -12,8 +22,16 @@ def leer_csv(archivo,num_col=0):
     
     
 def exploracion_dataframe(dataframe):
+    """
+    Función para explorar un dataframe
     
-   
+    Args:
+        dataframe (DataFrame): dataframe para explorar
+
+    Returns:
+        Esta función no devuelve nada directamente, pero realiza varios prints con información de los datos incluidos en el dataframe
+    """
+
     print(f"Los duplicados que tenemos en el conjunto de datos son: {dataframe.duplicated().sum()}")
     print("\n ..................... \n")
     display(dataframe.sample(10))
@@ -35,22 +53,11 @@ def exploracion_dataframe(dataframe):
     
     for col in dataframe_categoricas.columns:
         print(f"La columna {col.upper()} tiene las siguientes valore únicos:")
-        display(pd.DataFrame(dataframe[col].value_counts()).head())   
+        display(pd.DataFrame(dataframe[col].value_counts()))   
     
-    return dataframe 
-    
-   
     
    
-# %%
-df_clientes = leer_csv("Clientes.csv")
-exploracion_dataframe(df_clientes)
-# %%
-df_productos = leer_csv("Productos.csv",6)
-exploracion_dataframe(df_productos)
-#%%
-df_ventas= leer_csv("Ventas.csv")
-exploracion_dataframe(df_ventas)
+    
+   
 
-# %%
 
