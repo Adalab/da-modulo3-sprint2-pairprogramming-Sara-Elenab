@@ -15,9 +15,9 @@ def leer_csv(archivo,num_col=0):
     """
 
     if num_col == 0:
-        dataframe = pd.read_csv(archivo,index_col=0)
+        dataframe = pd.read_csv(archivo)
     else:
-        dataframe = pd.read_csv(archivo,usecols=range(num_col),index_col=0)
+        dataframe = pd.read_csv(archivo,usecols=range(num_col))
     return dataframe
     
     
